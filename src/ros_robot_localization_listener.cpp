@@ -138,7 +138,7 @@ RosRobotLocalizationListener::RosRobotLocalizationListener():
         }
       }
 
-      ROS_DEBUG_STREAM("Process noise covariance is:\n" << process_noise_covariance << "\n");
+      //ROS_DEBUG_STREAM("Process noise covariance is:\n" << process_noise_covariance << "\n");
     }
     catch (XmlRpc::XmlRpcException &e)
     {
@@ -156,15 +156,15 @@ RosRobotLocalizationListener::RosRobotLocalizationListener():
 
   sync_.registerCallback(&RosRobotLocalizationListener::odomAndAccelCallback, this);
 
-  ROS_INFO_STREAM("Ros Robot Localization Listener: Listening to topics " <<
-                  odom_sub_.getTopic() << " and " << accel_sub_.getTopic());
+  //ROS_INFO_STREAM("Ros Robot Localization Listener: Listening to topics " <<
+  //                odom_sub_.getTopic() << " and " << accel_sub_.getTopic());
 
   // Wait until the base and world frames are set by the incoming messages
   while (ros::ok() && base_frame_id_.empty())
   {
     ros::spinOnce();
-    ROS_INFO_STREAM_THROTTLE(1.0, "Ros Robot Localization Listener: Waiting for incoming messages on topics " <<
-                             odom_sub_.getTopic() << " and " << accel_sub_.getTopic());
+    //ROS_INFO_STREAM_THROTTLE(1.0, "Ros Robot Localization Listener: Waiting for incoming messages on topics " <<
+    //                         odom_sub_.getTopic() << " and " << accel_sub_.getTopic());
     ros::Duration(0.1).sleep();
   }
 }
@@ -326,8 +326,8 @@ bool RosRobotLocalizationListener::getState(const double time,
   {
     if ( estimator_->getSize() == 0 )
     {
-      ROS_WARN("Ros Robot Localization Listener: The base or world frame id is not set. "
-               "No odom/accel messages have come in.");
+      //ROS_WARN("Ros Robot Localization Listener: The base or world frame id is not set. "
+      //         "No odom/accel messages have come in.");
     }
     else
     {
@@ -340,9 +340,9 @@ bool RosRobotLocalizationListener::getState(const double time,
 
   if ( estimator_->getState(time, estimator_state) == EstimatorResults::ExtrapolationIntoPast )
   {
-    ROS_WARN("Ros Robot Localization Listener: A state is requested at a time stamp older than the oldest in the "
-             "estimator buffer. The result is an extrapolation into the past. Maybe you should increase the buffer "
-             "size?");
+    //ROS_WARN("Ros Robot Localization Listener: A state is requested at a time stamp older than the oldest in the "
+    //         "estimator buffer. The result is an extrapolation into the past. Maybe you should increase the buffer "
+    //         "size?");
   }
 
   // If no world_frame_id is specified, we will default to the world frame_id of the received odometry message
@@ -391,7 +391,7 @@ bool RosRobotLocalizationListener::getState(const double time,
     }
     catch ( const tf2::TransformException &e )
     {
-      ROS_WARN_STREAM("Ros Robot Localization Listener: Could not look up transform: " << e.what());
+      //ROS_WARN_STREAM("Ros Robot Localization Listener: Could not look up transform: " << e.what());
       return false;
     }
 
@@ -423,7 +423,7 @@ bool RosRobotLocalizationListener::getState(const double time,
   }
   catch ( const tf2::TransformException &e )
   {
-    ROS_WARN_STREAM("Ros Robot Localization Listener: Could not look up transform: " << e.what());
+    //ROS_WARN_STREAM("Ros Robot Localization Listener: Could not look up transform: " << e.what());
     return false;
   }
 
@@ -514,7 +514,7 @@ bool RosRobotLocalizationListener::getState(const ros::Time& ros_time, const std
   double time;
   if ( ros_time.isZero() )
   {
-    ROS_INFO("Ros Robot Localization Listener: State requested at time = zero, returning state at current time");
+    //ROS_INFO("Ros Robot Localization Listener: State requested at time = zero, returning state at current time");
     time = ros::Time::now().toSec();
   }
   else

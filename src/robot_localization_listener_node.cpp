@@ -78,7 +78,7 @@ private:
       res.covariance[i] = (*(covariance.data() + i));
     }
 
-    ROS_DEBUG("Robot Localization Listener Node: Listener responded with state and covariance at the requested time.");
+    //ROS_DEBUG("Robot Localization Listener Node: Listener responded with state and covariance at the requested time.");
     return true;
   }
 };
@@ -90,7 +90,7 @@ int main(int argc, char **argv)
   ros::init(argc, argv, "robot_localization_listener_node");
 
   RobotLocalization::RobotLocalizationListenerNode rlln;
-  ROS_INFO_STREAM("Robot Localization Listener Node: Ready to handle GetState requests at " << rlln.getService());
+  //ROS_INFO_STREAM("Robot Localization Listener Node: Ready to handle GetState requests at " << rlln.getService());
 
   ros::spin();
 

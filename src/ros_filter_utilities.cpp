@@ -123,16 +123,16 @@ namespace RosFilterUtilities
 
         if (!silent)
         {
-          ROS_WARN_STREAM_THROTTLE(2.0, "Transform from " << sourceFrame << " to " << targetFrame <<
-                                        " was unavailable for the time requested. Using latest instead.\n");
+          //ROS_WARN_STREAM_THROTTLE(2.0, "Transform from " << sourceFrame << " to " << targetFrame <<
+          //                              " was unavailable for the time requested. Using latest instead.\n");
         }
       }
       catch(tf2::TransformException &ex)
       {
         if (!silent)
         {
-          ROS_WARN_STREAM_THROTTLE(2.0, "Could not obtain transform from " << sourceFrame <<
-                                        " to " << targetFrame << ". Error was " << ex.what() << "\n");
+          //ROS_WARN_STREAM_THROTTLE(2.0, "Could not obtain transform from " << sourceFrame <<
+          //                              " to " << targetFrame << ". Error was " << ex.what() << "\n");
         }
 
         retVal = false;
